@@ -6,6 +6,12 @@
         "import"
     ],
 
-    
+    "rules": {
+        "react/prop-types": 0
+    },
+
+
     "perser": "babel-eslint"
+
+    
 }

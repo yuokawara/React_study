@@ -7,8 +7,8 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>React Test</Text>
-        <BodyText />
+        <Text>React</Text>
+        <BodyText>テストしてるよ</BodyText>
       </View>
     );
   }
