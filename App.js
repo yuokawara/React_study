@@ -7,8 +7,35 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>React</Text>
-        <BodyText>テストしてるよ</BodyText>
+
+      {/* 上部バー */}
+        <View style={styles.appber}>
+          <View>
+            <Text>Testメモです</Text>
+          </View>
+        </View>
+
+      {/* メモBody */}
+        <View style={styles.memoList}>
+          <View style={styles.memoListItem}>
+            <Text style={styles.memoTitle}>アイデア</Text>
+            <Text style={styles.memoDate}>2020.02.09</Text>
+          </View>
+        </View>
+
+        <View style={styles.memoList}>
+          <View style={styles.memoListItem}>
+            <Text style={styles.memoTitle}>アイデア</Text>
+            <Text style={styles.memoDate}>2020.02.09</Text>
+          </View>
+        </View>
+
+        <View style={styles.memoList}>
+          <View style={styles.memoListItem}>
+            <Text style={styles.memoTitle}>アイデア</Text>
+            <Text style={styles.memoDate}>2020.02.09</Text>
+          </View>
+        </View>
       </View>
     );
   }
