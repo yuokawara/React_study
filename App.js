@@ -1,17 +1,17 @@
+// 共用のAppBarはこちらに残しておく
+
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import MemoList from './src/components/MemoList.js';
-import AppBar from './src/components/AppBar.js';
-import CircleButton from './src/elements/CircleButton.js';
+import AppBar from './src/components/AppBar.js'
+import MemoListScreen from './src/screens/MemoListScreen.js'
 
 export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
           <AppBar />
-          <MemoList />
-          <CircleButton>+</CircleButton>
+          <MemoListScreen />
       </View>
     );
   }
@@ -24,6 +24,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#FAEBD7',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingTop: 80,
+    paddingTop: 100,
   },
 });
