@@ -5,13 +5,14 @@ import { StyleSheet, View } from 'react-native';
 
 import AppBar from './src/components/AppBar.js'
 import MemoListScreen from './src/screens/MemoListScreen.js'
+import MemoDetailscreen from './src/screens/MemoDetailScreen.js';
 
 export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
           <AppBar />
-          <MemoListScreen />
+          <MemoDetailscreen />
       </View>
     );
   }
@@ -23,7 +24,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FAEBD7',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     paddingTop: 100,
   },
 });
