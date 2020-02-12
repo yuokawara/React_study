@@ -1,5 +1,4 @@
 // 汎用性有り
-// line 21に配列を入れるか確認
 
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
@@ -17,7 +16,7 @@ class CircleButton extends React.Component {
 
             return (
           <View style={[styles.circleAddButton, style, { backgroundColor: bgColor }]}>
-            <Text style={[styles.circleAddButtonTitle, style, { color: textColor } ]}>
+            <Text style={[styles.circleAddButtonTitle, { color: textColor } ]}>
                 { this.props.children}
             </Text>
           </View>
@@ -32,7 +31,6 @@ const styles = StyleSheet.create({
         right: 40,
         width: 40,
         height: 40,
-        backgroundColor: '#FF00FF',
         borderRadius: 50,
         justifyContent: "center",
         alignItems: "center",

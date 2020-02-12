@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import MemoList from '../components/MemoList.js';
-import AppBar from '../components/AppBar.js';
 import CircleButton from '../elements/CircleButton.js';
 
 class MemoListScreen extends React.Component {
