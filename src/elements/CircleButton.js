@@ -1,9 +1,15 @@
 // 汎用性有り
 
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, } from 'react-native';
 import * as Font from 'expo-font';
 import fontAwesome from '../../assets/fonts/fa-solid-900.ttf';
+import { createIconSet } from '@expo/vector-icons';
+
+const CustomIcon = createIconSet({
+    pencil: '\uf303',
+    plus: '\uf067',
+}, 'FontAwesome');
 
 class CircleButton extends React.Component {
     state = {
@@ -19,7 +25,7 @@ class CircleButton extends React.Component {
         });
     }
         render() {
-            const { style, color } = this.props;
+            const { name, style, color } = this.props;
             let bgColor = '#E31676';
             let textColor = '#fff';
 
@@ -32,9 +38,7 @@ class CircleButton extends React.Component {
           <View style={[styles.circleAddButton, style, { backgroundColor: bgColor }]}>
             {
                 this.state.fontLoaded ? (
-                    <Text style={[styles.circleAddButtonTitle, { color: textColor } ]}>
-                        { this.props.children}
-                    </Text>
+                    <CustomIcon name={ name } style={[styles.circleAddButtonTitle, { color: textColor } ]} />
                 ) : null
             }
           </View>
@@ -63,7 +67,7 @@ const styles = StyleSheet.create({
     // addbuttontitle
     circleAddButtonTitle: {
         fontFamily: 'FontAwesome',
-        fontSize: 30,
+        fontSize: 24,
         lineHeight: 30,
         color: '#fff',
     },
