@@ -2,8 +2,22 @@
 
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
+import * as Font from 'expo-font';
+import fontAwesome from '../../assets/fonts/fa-solid-900.ttf';
 
 class CircleButton extends React.Component {
+    state = {
+        fontLoaded: false,
+    };
+    async componentWillMount() {
+        await Font.loadAsync({
+            FontAwesome: fontAwesome,
+        });
+
+        this.setState({
+            fontLoaded: true
+        });
+    }
         render() {
             const { style, color } = this.props;
             let bgColor = '#E31676';
@@ -16,9 +30,13 @@ class CircleButton extends React.Component {
 
             return (
           <View style={[styles.circleAddButton, style, { backgroundColor: bgColor }]}>
-            <Text style={[styles.circleAddButtonTitle, { color: textColor } ]}>
-                { this.props.children}
-            </Text>
+            {
+                this.state.fontLoaded ? (
+                    <Text style={[styles.circleAddButtonTitle, { color: textColor } ]}>
+                        { this.props.children}
+                    </Text>
+                ) : null
+            }
           </View>
         );
     }
@@ -44,6 +62,7 @@ const styles = StyleSheet.create({
     },
     // addbuttontitle
     circleAddButtonTitle: {
+        fontFamily: 'FontAwesome',
         fontSize: 30,
         lineHeight: 30,
         color: '#fff',
