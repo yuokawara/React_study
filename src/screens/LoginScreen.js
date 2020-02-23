@@ -1,16 +1,21 @@
 import React from 'react';
 import { StyleSheet, View, Text, TextInput, TouchableHighlight } from 'react-native';
 
+import firebase from 'firebase';
 
 class LoginScreen extends React.Component {
     state = {
         email: '',
-        pasword:'',
+        password:'',
     }
-
     handleSubmit() {
-        
-        // { this.props.navigation.navigate('Home') }
+        firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
+        .then((user) => {
+            this.props.navigation.navigate('Home');
+        })
+        .catch((error) => {
+            console.log('error', error);
+        });
     }
 
     render() {
@@ -23,11 +28,11 @@ class LoginScreen extends React.Component {
                 autoCorrect={false}
                 placeholder="Email Address"
                 />
-                <TextInput style={styles.input} value={ this.state.pasword } 
-                onChangeText={(text) => { this.setState({ pasword: text })}} 
+                <TextInput style={styles.input} value={ this.state.password } 
+                onChangeText={(text) => { this.setState({ password: text })}} 
                 autoCapitalize="none"
                 autoCorrect={false}
-                placeholder="Pasword"
+                placeholder="Password"
                 secureTextEntry
                 />
                 <TouchableHighlight style={styles.Button} onPress={this.handleSubmit.bind(this)} underlayColor="#C70F66">

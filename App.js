@@ -6,15 +6,15 @@ import React from 'react';
 import firebase from 'firebase';
 
 // StackNavigater import
-import { createAppContainer } from 'react-navigation';
+import { createAppContainer }   from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
 // 各種Screen import
-import LoginScreen from './src/screens/LoginScreen.js';
-import SignupScreen from './src/screens/SignupScreen.js';
-import MemoListScreen from './src/screens/MemoListScreen.js'
+import SignupScreen     from './src/screens/SignupScreen.js';
+import LoginScreen      from './src/screens/LoginScreen.js';
+import MemoListScreen   from './src/screens/MemoListScreen.js'
 import MemoDetailScreen from './src/screens/MemoDetailScreen.js'
-import MemoEditScreen from './src/screens/MemoEditScreen.js'
+import MemoEditScreen   from './src/screens/MemoEditScreen.js'
 
 // envfile
 import ENV from './env.json';
