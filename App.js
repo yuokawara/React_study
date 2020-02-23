@@ -1,10 +1,13 @@
 // ロ○ィア風メモにする
 
+import React from 'react';
+
+// firebase読み込み
+import firebase from 'firebase';
+
 // StackNavigater import
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-
-import React from 'react';
 
 // 各種Screen import
 import LoginScreen from './src/screens/LoginScreen.js';
@@ -13,22 +16,22 @@ import MemoListScreen from './src/screens/MemoListScreen.js'
 import MemoDetailScreen from './src/screens/MemoDetailScreen.js'
 import MemoEditScreen from './src/screens/MemoEditScreen.js'
 
-import firebase from 'firebase';
+// envfile
+import ENV from './env.json';
 
 
- firebaseConfig = {
-  apiKey: 'AIzaSyCKQCeS0OgAwg0OtU70hL3G5p1Brhm6PUg',
-  authDomain: 'memoapp-20200222.firebaseapp.com',
-  databaseURL: 'https://memoapp-20200222.firebaseio.com',
-  projectId: 'memoapp-20200222',
-  storageBucket: 'memoapp-20200222.appspot.com',
-  messagingSenderId: '728436409725',
-  appId: '1:728436409725:web:8398540d97a49043dcf814',
-  measurementId: 'G-DJ5Q4C9SHJ',
+ const firebaseConfig = {
+  apiKey:            ENV.FIREBASE_API_KEY,
+  authDomain:        ENV.FIREBASE_AUTH_DOMAIN,
+  databaseURL:       ENV.FIREBASE_DB_URL,
+  projectId:         ENV.FIREBASE_PRJ_ID,
+  storageBucket:     ENV.FIREBASE_STORAGE,
+  messagingSenderId: ENV.FIREBASE_SENDER_ID,
+  appId:             ENV.FIREBASE_APP_ID,
+  measurementId:     ENV.FIREBASE_MEASURE_ID,
 };
 
-firebaseConfig.initializeApp(firebaseConfig);
-firebase.analytics();
+firebase.default.initializeApp(firebaseConfig);
 
 // StackNavigater
 const AppNavigator = createStackNavigator({
