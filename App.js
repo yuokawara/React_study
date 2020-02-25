@@ -4,6 +4,7 @@ import React from 'react';
 
 // firebase読み込み
 import firebase from 'firebase';
+// require("firebase/firestore");
 
 // StackNavigater import
 import { createAppContainer }   from 'react-navigation';
