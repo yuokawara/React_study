@@ -16,6 +16,7 @@ import LoginScreen      from './src/screens/LoginScreen.js';
 import MemoListScreen   from './src/screens/MemoListScreen.js'
 import MemoDetailScreen from './src/screens/MemoDetailScreen.js'
 import MemoEditScreen   from './src/screens/MemoEditScreen.js'
+import MemoCreateScreen from './src/screens/MemoCreateScreen.js'
 
 // envfile
 import ENV from './env.json';
@@ -41,6 +42,7 @@ const AppNavigator = createStackNavigator({
   Home:       { screen: MemoListScreen },
   MemoDetail: { screen: MemoDetailScreen },
   MemoEdit:   { screen: MemoEditScreen },
+  MemoCreate: { screen: MemoCreateScreen },
   
 }, {
   defaultNavigationOptions: {
