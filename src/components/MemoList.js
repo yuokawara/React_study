@@ -1,22 +1,31 @@
 import React from 'react';
-import { StyleSheet, View, Text, TouchableHighlight } from 'react-native';
+import { StyleSheet, View, Text, TouchableHighlight, FlatList } from 'react-native';
 
+
+// 日付表示
+const dateString = (date) => {
+  const str = date.toDate().toISOString();
+  // ['2020-02-29T06:07:50.000Z'][0] T以降は表示しない
+  return str.split('T')[0];
+};
+
+// DBからitemを呼び出し
 class MemoList extends React.Component {
-    render() {
-      console.log(this.props.memoList);
-      return (
-        <View style={styles.memoList}>
-        <TouchableHighlight onPress={() => {this.props.navigation.navigate('MemoDetail'); }}>
+  renderMemo({ item }) {
+    console.log(item)
+    return(
+      <TouchableHighlight onPress={() => {this.props.navigation.navigate('MemoDetail', { memo: item }); }}>
           <View style={styles.memoListItem}>
-            <Text style={styles.memoTitle}>アイデア</Text>
-            <Text style={styles.memoDate}>2020.02.09</Text>
+            <Text style={styles.memoTitle}>{item.body.substring(0, 10)}</Text>
+            <Text style={styles.memoDate}>{dateString(item.createdOn)}</Text>
           </View>
         </TouchableHighlight>
-          <View style={styles.memoListItem}>
-            <Text style={styles.memoTitle}>アイデア</Text>
-            <Text style={styles.memoDate}>2020.02.09</Text>
-          </View>
-
+    );
+  }
+    render() {
+      return (
+        <View style={styles.memoList}>
+          <FlatList data={this.props.memoList} renderItem={this.renderMemo.bind(this)} />
         </View>
         );
     }

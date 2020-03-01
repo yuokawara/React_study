@@ -2,24 +2,46 @@ import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import CircleButton from '../elements/CircleButton';
 
+
+// 日付表示
+const dateString = (date) => {
+    const str = date.toDate().toISOString();
+    // ['2020-02-29T06:07:50.000Z'][0] T以降は表示しない
+    return str.split('T')[0];
+};
+
 class MemoDetailscreen extends React.Component {
+    state = {
+        memo: {},
+    }
+
+    componentWillMount() {
+        const { params } = this.props.navigation.state;
+        this.setState({ memo: params.memo });
+    }
+    
+
     render () {
+        const { memo } = this.state;
         return (
             <View style={styles.container}>
                 <View>
                     <View style={styles.memoHeader}>
                         <View style={styles.memoHeaderContents}>
-                            <Text style={styles.memoHeaderTltle}>Testのアイデア</Text>
-                            <Text style={styles.memoHeaderDate}>2020.02.11</Text>
+                            <Text style={styles.memoHeaderTltle}>{memo.body.substring(0, 10)}</Text>
+                            <Text style={styles.memoHeaderDate}>{dateString(memo.createdOn)}</Text>
                         </View>
                     </View>
                 </View>
 
                 <View style={styles.memoContents}>
-                    <Text style={styles.memoContentsComment}>Testのアイデアです。調整中です。</Text>
+                    <Text style={styles.memoBody}>{memo.body}</Text>
                 </View>
 
-                <CircleButton name ="pencil" color="white" style={styles.editButton} onPress={() => { this.props.navigation.navigate('MemoEdit'); }} />
+                <CircleButton name ="pencil" 
+                color="white" 
+                style={styles.editButton} 
+                onPress={() => { this.props.navigation.navigate('MemoEdit', { memo }); }} />
             </View>
 
         );
@@ -61,6 +83,12 @@ const styles = StyleSheet.create({
         paddingBottom: 20,
         backgroundColor: "#fff",
         flex: 1,
+    },
+
+    // memobody
+    memoBody: {
+        lineHeight: 25,
+        fontSize: 20,
     },
 
     // editbutton
