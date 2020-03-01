@@ -12,6 +12,16 @@ class MemoListScreen extends React.Component {
     componentWillMount() {
         const { currentUser } = firebase.auth();
         firebase.firestore().collection(`users/${currentUser.uid}/memos`)
+        // RealtimeDatabase用の変更
+        .onSnapshot((snapshot) => {
+            const memoList = [];
+            snapshot.forEach((doc) => {
+                memoList.push({ ...doc.data(), key: doc.id });
+            });
+            this.setState({ memoList });
+        });
+
+        /*
         .get()
         .then((snapshot) => {
             const memoList = [];
@@ -23,17 +33,19 @@ class MemoListScreen extends React.Component {
         .catch((error) => {
             console.log(error);
         });
+        */
     }
+
     handlePress() {
         this.props.navigation.navigate('MemoCreate');
     }
+
     render () {
         return (
             <View style={styles.container}>
                 <MemoList memoList={this.state.memoList} navigation={this.props.navigation} />
                 <CircleButton name="plus" onPress={this.handlePress.bind(this)} />
             </View>
-
         );
     }
 }

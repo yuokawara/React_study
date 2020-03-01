@@ -3,7 +3,7 @@ import { StyleSheet, View, TextInput } from 'react-native';
 
 import firebase from 'firebase';
 
-import CircleButton from '../elements/CircleButton.js'
+import CircleButton from '../elements/CircleButton.js';
 
 class MemoEditScreen extends React.Component {
 
@@ -15,26 +15,34 @@ class MemoEditScreen extends React.Component {
 
     // Detail表示前の処理
     componentWillMount() {
-        console.log(this.props.navigation.state.params);
         const { params } = this.props.navigation.state;
         this.setState({ 
             body: params.memo.body, 
-            key:  params.memo.key 
+            key:  params.memo.key, 
         });
     }
-    // currentuserからデータを抜き取って、データを参照
 
+    // currentuserからデータを抜き取って、データを参照
     handlePress() {
         const { currentUser } = firebase.auth();
         const db = firebase.firestore();
+        const newDate = firebase.firestore.Timestamp.now();
         console.log(this.state);
         db.collection(`users/${currentUser.uid}/memos`).doc(this.state.key)
             // 参照しているドキュメントを更新
             .update({
                 body: this.state.body,
+                createOn: newDate,
             })
             .then(() => {
-                console.log('success');
+                const { navigation } = this.props;
+                // 特殊処理、memodetailに変更表示を反映
+                navigation.state.params.returnMemo({
+                    body:     this.state.body,
+                    key:      this.state.key,
+                    createOn: newDate,
+                });
+                navigation.goBack();
             })
             .catch((error) => {
                 console.log(error);
