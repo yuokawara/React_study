@@ -5,9 +5,12 @@ import CircleButton from '../elements/CircleButton';
 
 // 日付表示
 const dateString = (date) => {
-    const str = date.toDate().toISOString();
-    // ['2020-02-29T06:07:50.000Z'][0] T以降は表示しない
-    return str.split('T')[0];
+    if (date == null) { return ''; }
+    const dateObject = date.toDate();
+    return dateObject.toISOString().split('T')[0];
+    // const str = date.toDate().toISOString();
+    // // ['2020-02-29T06:07:50.000Z'][0] T以降は表示しない
+    // return str.split('T')[0];
 };
 
 class MemoDetailscreen extends React.Component {
