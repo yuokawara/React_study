@@ -7,10 +7,8 @@ import CircleButton from '../elements/CircleButton';
 const dateString = (date) => {
     if (date == null) { return ''; }
     const dateObject = date.toDate();
+    // ['2020-02-29T06:07:50.000Z'][0] T以降は表示しない
     return dateObject.toISOString().split('T')[0];
-    // const str = date.toDate().toISOString();
-    // // ['2020-02-29T06:07:50.000Z'][0] T以降は表示しない
-    // return str.split('T')[0];
 };
 
 class MemoDetailscreen extends React.Component {
@@ -18,7 +16,7 @@ class MemoDetailscreen extends React.Component {
         memo: {},
     }
 
-    componenWillMount() {
+    componentWillMount() {
         const { params } = this.props.navigation.state;
         this.setState({ memo: params.memo });
     }
@@ -52,10 +50,9 @@ class MemoDetailscreen extends React.Component {
                 }} 
                 />
             </View>
-
         );
     }
-};
+}
 
 const styles = StyleSheet.create({
     // container

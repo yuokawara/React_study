@@ -10,7 +10,7 @@ class LoginScreen extends React.Component {
     }
     handleSubmit() {
         firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
-        .then((user) => {
+        .then(() => {
 
             // 操作中Loginに戻らないための処理
             const resetAction = StackActions.reset({
@@ -21,8 +21,7 @@ class LoginScreen extends React.Component {
             });
             this.props.navigation.dispatch(resetAction);
         })
-        .catch((error) => {
-            console.log('error', error);
+        .catch(() => {
         });
     }
 

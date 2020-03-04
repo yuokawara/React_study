@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, View, TextInput } from 'react-native';
-
 import firebase from 'firebase';
 
 import CircleButton from '../elements/CircleButton.js';
@@ -27,7 +26,6 @@ class MemoEditScreen extends React.Component {
         const { currentUser } = firebase.auth();
         const db = firebase.firestore();
         const newDate = firebase.firestore.Timestamp.now();
-        console.log(this.state);
         db.collection(`users/${currentUser.uid}/memos`).doc(this.state.key)
             // 参照しているドキュメントを更新
             .update({
@@ -44,8 +42,7 @@ class MemoEditScreen extends React.Component {
                 });
                 navigation.goBack();
             })
-            .catch((error) => {
-                console.log(error);
+            .catch(() => {
             });
     }
 

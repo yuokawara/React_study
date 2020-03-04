@@ -11,7 +11,7 @@ class SignupScreen extends React.Component {
     handleSubmit() {
         // Signup
         firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
-        .then((user) => {
+        .then(() => {
              // 操作中Loginに戻らないための処理
             const resetAction = StackActions.reset({
                 index: 0,
@@ -21,10 +21,8 @@ class SignupScreen extends React.Component {
             });
             this.props.navigation.dispatch(resetAction);
         })
-        .catch((error) => {
-            console.log(error);
+        .catch(() => {
         });
-        // { this.props.navigation.navigate('Home') }
     }
 
     render() {
