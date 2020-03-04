@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, TextInput } from 'react-native';
 import firebase from 'firebase';
+import { Platform } from 'react-native';
 
 import CircleButton from '../elements/CircleButton.js';
 
@@ -53,8 +54,10 @@ class MemoEditScreen extends React.Component {
                 multiline value={this.state.body} 
                 autoCorrect={false}
                 autoCapitalize="none"
-                //textを編集可能に処理
+                // textを編集可能に処理
                 onChangeText={(text) => {this.setState({ body: text }); }} 
+                // Android用
+                textAlignVertical="top" 
                 />
                 <CircleButton name="check" 
                 onPress= {this.handlePress.bind(this)} 
@@ -75,11 +78,18 @@ const styles = StyleSheet.create({
     //editinput
     memoEditInput: {
         backgroundColor: '#efefef',
-        fontSize: 20,
         paddingTop: 30,
         paddingLeft: 20,
         paddingRight: 20,
         paddingBottom: 20,
+        ...Platform.select({
+            android: {
+                fontSize: 12,
+            },
+            ios: {
+                fontSize: 20,
+            },
+        }),
     },
 
 });

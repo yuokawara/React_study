@@ -3,7 +3,9 @@ import React from 'react';
 
 // firebase読み込み
 import firebase from 'firebase';
-// require("firebase/firestore");
+
+// プラットフォームごとの設定はこちらをimport
+import { Platform } from 'react-native';
 
 // StackNavigater import
 import { createAppContainer }   from 'react-navigation';
@@ -45,10 +47,23 @@ const AppNavigator = createStackNavigator({
   
 }, {
   defaultNavigationOptions: {
-      headerTitle: 'Test',
+      headerTitle: 'MemoTest',
       headerBackTitle: ' ',
       headerStyle: {
         backgroundColor: '#FFA500',
+        ...Platform.select({
+          android: {
+            height: 70,
+          },
+          // ios
+          shadowColor: '#000',
+            shadowOffset: {
+              width: 0,
+              height: 2
+            },
+            shadowOpacity: 0.3,
+            shadowRadius: 3,
+        }),
       },
       headerTitleStyle: {
         color: '#696969',

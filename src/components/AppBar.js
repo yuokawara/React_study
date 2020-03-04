@@ -6,7 +6,7 @@ class AppBar extends React.Component {
             return (
           <View style={styles.appbar}>
             <View>
-              <Text style={styles.appbarTitle}>Testメモです</Text>
+              <Text style={styles.appbarTitle}>MemoTest</Text>
             </View>
           </View>
         );
@@ -33,11 +33,13 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 3,
     zIndex: 10,
+    // Android用設定 shadow
+    elevation: 4,
   },
 
   appbarTitle: {
     color: '#800000',
-    fontSize: 20,
+    fontSize: 15,
   },
 
 });

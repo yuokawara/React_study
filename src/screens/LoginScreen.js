@@ -68,44 +68,47 @@ const styles = StyleSheet.create({
 
     // title
     title: {
-        fontSize: 25,
+        fontSize: 20,
         alignSelf: "center",
-        marginBottom: 25,
+        marginBottom: 20,
     },
 
     // input
     input: {
         backgroundColor: '#efefef',
-        height: 50,
+        height: 40,
         padding: 5,
         marginBottom: 15,
         borderWidth: 1,
         borderColor: '#000',
+        elevation: 3,
     },
 
     // signup
     signup: {
         marginTop: 20,
         alignSelf: "center",
+        elevation: 4,
     },
     // signupText
     signupText: {
-        fontSize: 20,
+        fontSize: 15,
     },
 
     // button
     Button: {
         width: '60%',
         backgroundColor: '#E31676',
-        height: 40,
+        height: 30,
         borderRadius: 5,
         justifyContent: "center",
         alignItems: "center", // button内のコンテンツをセンターにする
         alignSelf: "center", // button本体をセンターにする
+        elevation: 3,
     },
     ButtonTitle: {
         color: '#fff',
-        fontSize: 20,
+        fontSize: 15,
         fontWeight: "bold",
     },
 });

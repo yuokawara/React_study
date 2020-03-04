@@ -44,7 +44,6 @@ class CircleButton extends React.Component {
                         ) : null
                     }
                     </View>
-
                 </TouchableHighlight>
         );
     }
@@ -53,14 +52,13 @@ const styles = StyleSheet.create({
     // addbutton
     container: {
         position: 'absolute',
-        bottom: 40,
-        right: 40,
+        bottom: 30,
+        right: 30,
         width: 48, // バグ対応追加
         height: 48, // バグ対応追加
 
     },
     circleAddButton: {
-        
         width: 40,
         height: 40,
         borderRadius: 50,
@@ -73,6 +71,8 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.3,
         shadowRadius: 3,
+        // android用設定
+        elevation: 4,
     },
     // addbuttontitle
     circleAddButtonTitle: {

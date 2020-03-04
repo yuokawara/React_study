@@ -2,6 +2,10 @@ import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import CircleButton from '../elements/CircleButton';
 
+// プラットフォームごとの設定はこちらをimport
+import { Platform } from 'react-native';
+
+
 
 // 日付表示
 const dateString = (date) => {
@@ -71,13 +75,13 @@ const styles = StyleSheet.create({
 
     memoHeaderTltle: {
         marginBottom: 4,
-        fontSize: 30,
+        fontSize: 25,
         fontWeight: 'bold',
         color: '#fff',
     },
     
     memoHeaderDate: {
-        fontSize: 20,
+        fontSize: 15,
         color: '#fff',
     },
 
@@ -94,7 +98,15 @@ const styles = StyleSheet.create({
     // memobody
     memoBody: {
         lineHeight: 25,
-        fontSize: 20,
+        // 各プラットフォーム事の設定
+        ...Platform.select({
+            android: {
+                fontSize: 15,
+            },
+            ios: {
+                fontSize: 20,
+            },
+        }),
     },
 
     // editbutton
