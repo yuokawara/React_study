@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, TextInput } from 'react-native';
+import { StyleSheet, ScrollView, TextInput } from 'react-native';
 import CircleButton from '../elements/CircleButton.js'
 
 import * as firebase from 'firebase/app';
@@ -26,7 +26,7 @@ class MemoCreateScreen extends React.Component {
 
     render() {
         return (
-            <View style={ styles.container }>
+            <ScrollView style={ styles.container }>
                 <TextInput style={ styles.memoEditInput } 
                 multiline placeholder="文字を入力" 
                 onChangeText={(text) =>  { this.setState({ body: text }); }}
@@ -35,7 +35,7 @@ class MemoCreateScreen extends React.Component {
                 textAlignVertical = "top" 
                 />
                 <CircleButton name="check" onPress={this.handlePress.bind(this)} />
-            </View>
+            </ScrollView>
 
         );
     }

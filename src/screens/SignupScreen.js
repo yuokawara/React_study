@@ -27,19 +27,21 @@ class SignupScreen extends React.Component {
 
     render() {
         return (
-            <View style={styles.container}>
+            <View scrollEnabled={false} style={styles.container}>
             <Text style={styles.title}>メンバー登録画面</Text>
                 <TextInput style={styles.input} value={ this.state.email } 
                 onChangeText={(text) => { this.setState({ email: text })}} 
                 autoCapitalize="none"
                 autoCorrect={false}
                 placeholder="Email Address"
+                returnKeyType = "done"
                 />
                 <TextInput style={styles.input} value={ this.state.pasword } 
                 onChangeText={(text) => { this.setState({ password: text })}} 
                 autoCapitalize="none"
                 autoCorrect={false}
                 placeholder="Password"
+                returnKeyType = "done"
                 secureTextEntry
                 />
                 <TouchableHighlight style={styles.Button} onPress={this.handleSubmit.bind(this)} underlayColor="#C70F66">

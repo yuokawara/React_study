@@ -53,14 +53,15 @@ class MemoEditScreen extends React.Component {
                 <TextInput style={ styles.memoEditInput } 
                 multiline value={this.state.body} 
                 autoCorrect={false}
-                autoCapitalize="none"
+                autoCapitalize="none" 
+                returnKeyType = "done"
                 // textを編集可能に処理
                 onChangeText={(text) => {this.setState({ body: text }); }} 
                 // Android用
                 textAlignVertical="top" 
                 />
                 <CircleButton name="check" 
-                onPress= {this.handlePress.bind(this)} 
+                onPress= {this.handlePress.bind(this)}
                 />
             </View>
 

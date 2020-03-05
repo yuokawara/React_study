@@ -31,13 +31,14 @@ class LoginScreen extends React.Component {
 
     render() {
         return (
-            <View style={styles.container}>
+            <View scrollEnabled={false} style={styles.container}>
             <Text style={styles.title}>ログイン</Text>
                 <TextInput style={styles.input} value={ this.state.email } 
                 onChangeText={(text) => { this.setState({ email: text })}} 
                 autoCapitalize="none"
                 autoCorrect={false}
-                placeholder="Email Address"
+                placeholder="Email Address" 
+                returnKeyType="done"
                 />
                 <TextInput style={styles.input} value={ this.state.password } 
                 onChangeText={(text) => { this.setState({ password: text })}} 
@@ -45,6 +46,7 @@ class LoginScreen extends React.Component {
                 autoCorrect={false}
                 placeholder="Password"
                 secureTextEntry
+                returnKeyType="done"
                 />
                 <TouchableHighlight style={styles.Button} onPress={this.handleSubmit.bind(this)} underlayColor="#C70F66">
                     <Text style={styles.ButtonTitle}>ログイン</Text>
