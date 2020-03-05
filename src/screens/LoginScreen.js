@@ -3,16 +3,26 @@ import { StyleSheet, View, Text, TextInput, TouchableHighlight, TouchableOpacity
 import { StackActions, NavigationActions } from 'react-navigation';
 import firebase from 'firebase';
 
+import Expo from 'expo';
+import * as SecureStore from 'expo-secure-store';
+
 class LoginScreen extends React.Component {
     state = {
         email: '', // testemail test2@test.com
         password: '', // testpasword test1234
     }
-    handleSubmit() {
-        firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
-        .then(() => {
 
-            // 操作中Loginに戻らないための処理
+    async componentDidMount() {
+        const email = await Expo.SecureStore.getItemAsync('email');
+        const password = await Expo.SecureStore.getItemAsync('password');
+        firebase.auth().signInWithEmailAndPassword(email, password)
+        .then(() => {
+            this.navigatetoHome();
+        });
+    }
+
+    navigatetoHome() {
+        // 操作中Loginに戻らないための処理
             const resetAction = StackActions.reset({
                 index: 0,
                 actions: [
@@ -20,6 +30,14 @@ class LoginScreen extends React.Component {
                 ],
             });
             this.props.navigation.dispatch(resetAction);
+    }
+
+    handleSubmit() {
+        firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
+        .then(() => {
+            Expo.SecureStore.setItemAsync('email', this.state.email);
+            Expo.SecureStore.setItemAsync('password', this.state.password);
+            this.navigatetoHome();
         })
         .catch(() => {
         });
