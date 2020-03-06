@@ -5,20 +5,25 @@ import firebase from 'firebase';
 
 import Expo from 'expo';
 import * as SecureStore from 'expo-secure-store';
+import Loading from '../elements/Loading';
 
 class LoginScreen extends React.Component {
     state = {
         email: '', // testemail test2@test.com
         password: '', // testpasword test1234
+        isLoading: true,
     }
 
     async componentDidMount() {
         const email = await Expo.SecureStore.getItemAsync('email');
         const password = await Expo.SecureStore.getItemAsync('password');
+        if (email && password) {
         firebase.auth().signInWithEmailAndPassword(email, password)
         .then(() => {
+            this.setState({ isLoading: false });
             this.navigatetoHome();
         });
+        }
     }
 
     navigatetoHome() {
@@ -35,7 +40,7 @@ class LoginScreen extends React.Component {
     handleSubmit() {
         firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
         .then(() => {
-            Expo.SecureStore.setItemAsync('email', this.state.email);
+            Expo.SecureStore.setItemAsync('email',    this.state.email);
             Expo.SecureStore.setItemAsync('password', this.state.password);
             this.navigatetoHome();
         })
@@ -49,7 +54,8 @@ class LoginScreen extends React.Component {
 
     render() {
         return (
-            <View scrollEnabled={false} style={styles.container}>
+            <View style={styles.container}>
+                <Loading text="ろぐいんちゅう" isLoading={this.state.isLoading} />
             <Text style={styles.title}>ログイン</Text>
                 <TextInput style={styles.input} value={ this.state.email } 
                 onChangeText={(text) => { this.setState({ email: text })}} 
