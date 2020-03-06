@@ -11,12 +11,12 @@ class LoginScreen extends React.Component {
     state = {
         email: '', // testemail test2@test.com
         password: '', // testpasword test1234
-        isLoading: true,
+        // isLoading: true,
     }
 
     async componentDidMount() {
-        const email = await Expo.SecureStore.getItemAsync('email');
-        const password = await Expo.SecureStore.getItemAsync('password');
+        const email = await SecureStore.getItemAsync('email');
+        const password = await SecureStore.getItemAsync('password');
         if (email && password) {
         firebase.auth().signInWithEmailAndPassword(email, password)
         .then(() => {
@@ -40,8 +40,8 @@ class LoginScreen extends React.Component {
     handleSubmit() {
         firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
         .then(() => {
-            Expo.SecureStore.setItemAsync('email',    this.state.email);
-            Expo.SecureStore.setItemAsync('password', this.state.password);
+            SecureStore.setItemAsync('email',    this.state.email);
+            SecureStore.setItemAsync('password', this.state.password);
             this.navigatetoHome();
         })
         .catch(() => {
