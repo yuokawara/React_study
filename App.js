@@ -47,7 +47,7 @@ const AppNavigator = createStackNavigator({
   
 }, {
   defaultNavigationOptions: {
-      headerTitle: 'MemoTest',
+      headerTitle: 'めもぱっど',
       headerBackTitle: ' ',
       headerStyle: {
         backgroundColor: '#FFA500',

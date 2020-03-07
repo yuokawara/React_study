@@ -14,7 +14,7 @@ class MemoEditScreen extends React.Component {
     }
 
     // Detail表示前の処理
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         const { params } = this.props.navigation.state;
         this.setState({ 
             body: params.memo.body, 

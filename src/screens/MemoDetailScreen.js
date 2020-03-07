@@ -20,7 +20,7 @@ class MemoDetailscreen extends React.Component {
         memo: {},
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         const { params } = this.props.navigation.state;
         this.setState({ memo: params.memo });
     }

@@ -11,7 +11,7 @@ class MemoListScreen extends React.Component {
     state = {
         memoList: [],
     }
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         const { currentUser } = firebase.auth();
         firebase.firestore().collection(`users/${currentUser.uid}/memos`)
         // RealtimeDatabase用の変更
